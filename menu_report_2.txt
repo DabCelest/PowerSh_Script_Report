@@ -1,0 +1,26 @@
+		
+
+			**************************************************************************
+			*                                                                        *
+			*              BIENVENUE DANS LE SYSTEME DE GESTION_1 DE FSOS            *
+			*                                                                        *
+			**************************************************************************
+ 
+:::MENU:::
+
+  					1. Afficher les principales caracteristiques du systeme   
+                                                                                            
+					2. Afficher les differents processus en cours utilisation        
+                                                                                
+ 					3. Afficher le fichier log  
+                                                                        
+					4. Copier le fichier log sur une clef USB  
+                                                                                                           
+					5. Quitter le systeme      
+
+
+********************************************************
+* VEUILLEZ SAISIR UN NUMERO CORRESPONDANT A UNE OPTION *
+********************************************************
+
+
