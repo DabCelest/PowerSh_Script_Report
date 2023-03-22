@@ -64,9 +64,21 @@ function Show-LogFile {
 function Copy-LogFileToUsb {
     Clear-Host
     Write-ToLogFile "Tentative de copie du fichier log sur une clef USB"
-    $usbDrive = Get-WmiObject Win32_Volume | Where-Object { $_.DriveType -eq 2 } | Select-Object -First 1
-    if ($usbDrive) {
-        $usbPath = "$($usbDrive.DriveLetter):\MonDossier\monfichier.log"
+
+    $usbDrive = Get-WmiObject Win32_Volume | Where-Object { $_.DriveType -eq 2 } | Select-Object -First 1 # Pour recuperer la 1ere cle usb connectee 
+
+    if ($usbDrive) {  #Processus de verification usb connectee et de copie de contenu fichier log
+        $path = $usbDrive.DriveLetter + "\MonDossier" # verification existance du dossier sur usb ou sa creation
+        if(!(Test-Path $path)){
+            New-Item -ItemType Directory -Path $path
+        }
+
+        $log_file = $path + "\monfichier.log"   # verification existance du fichier log sur usb ou sa creation
+        if(!(Test-Path $log_file)){
+            New-Item -ItemType File -Path $log_file
+        }
+
+        $usbPath = $log_file
         Copy-Item -Path "C:\MonDossier\monfichier.log" -Destination $usbPath
         Write-ToLogFile "Copie du fichier log sur une clef USB"
         Write-Host "Le fichier log a ete copie avec succes sur la clef USB."
@@ -87,7 +99,7 @@ function Exiting-Program {
 $choice = 0
 while ($true) {
     Show-MainMenu
-    $choice = Read-Host -Prompt "Entrer votre choix (1-5)."
+    $choice = Read-Host -Prompt "Entrer votre choix (1-5)." # utilisation de la commande Read-Host pour afficher le message et stocker la réponse de utili dans la variable $choice.
     switch($choice) {
         1 {
             Show-SystemInfo
