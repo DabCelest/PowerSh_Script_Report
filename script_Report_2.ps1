@@ -1,7 +1,7 @@
 
 # Declaration de la fonction d'affichage de l'ecran d'accueil
 function Show-MainMenu {
-    #Clear-Host
+    Clear-Host
     Get-Content C:\Script_Rap\menu_report_2.txt
 }
 # Initialisation des ressources internes necessaires 
