@@ -39,15 +39,15 @@ function Show-ProcessInfo {
     Clear-Host
     Write-ToLogFile "Affichage des processus en cours d'utilisation"
     Write-Host "Processus en cours d'utilisation:"
-    Get-Process | Select-Object Id, ProcessName, CPU, PrivateMemorySize, WorkingSet | Format-Table
+    Get-Process | Select-Object Id, ProcessName, CPU, PrivateMemorySize, WorkingSet | Out-Gridview  #Format-Table
     Read-Host -Prompt "Appuyez sur Entree pour revenir au menu principal."
 }
 
 # Declaration de la fonction d'écriture dans le fichier log
 function Write-ToLogFile ($message) {
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    $command = $($MyInvocation.Line)
-    $logEntry = "$timestamp - $command - $message"
+    #$command = $($MyInvocation.Line)
+    $logEntry = "$timestamp - $message" #-$command
     Add-Content -Path $filePath -Value $logEntry
 }
 
